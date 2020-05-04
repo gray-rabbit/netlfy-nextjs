@@ -1,36 +1,45 @@
-import Link from 'next/link';
+import Link from "next/link";
 import { getSortedPostsData } from "../lib/posts";
+import Layout from "../components/layout";
+import BlogAppBar from "../components/BlogAppBar";
+import { Card, Grid, CardContent, Typography } from "@material-ui/core";
 
 const IndexPage = ({ allPostData }) => {
-    console.log(allPostData);
-    return <div>
-        <section>
-            <h2 >Blog</h2>
-            <ul >
-                {allPostData.map(({ id, date, title }) => (
-                    <li key={id}>
-                        {title}
-                        <br />
-                        <Link href="/posts/[id]" as={`/posts/${id}`}>
-                            <a>{id}</a>
-                        </Link>
-                        <br />
-                        {date}
-                    </li>
-                ))}
-            </ul>
-        </section>
-    </div>
-}
-
+  return (
+    <Layout title="Coala Devlog">
+      <h2>Blog</h2>
+      <Grid container>
+        {allPostData.map(({ id, date, title }) => (
+          <Grid
+            key={id}
+            sm={6}
+            md={4}
+            style={{ width: "100%", padding: "1rem" }}
+          >
+            <Link href="/posts/[id]" as={`/posts/${id}`}>
+              <a>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h5">{title}</Typography>
+                    {date}
+                  </CardContent>
+                </Card>
+              </a>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+    </Layout>
+  );
+};
 
 export async function getStaticProps() {
-    const allPostData = getSortedPostsData();
-    return {
-        props: {
-            allPostData
-        }
-    }
+  const allPostData = getSortedPostsData();
+  return {
+    props: {
+      allPostData,
+    },
+  };
 }
 
 export default IndexPage;
