@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getSortedPostsData } from "../lib/posts";
 import Layout from "../components/layout";
-import BlogAppBar from "../components/BlogAppBar";
 import { Card, Grid, CardContent, Typography } from "@material-ui/core";
 
 const IndexPage = ({ allPostData }) => {
@@ -9,7 +8,7 @@ const IndexPage = ({ allPostData }) => {
     <Layout title="Coala Devlog">
       <h2>Blog</h2>
       <Grid container>
-        {allPostData&&allPostData.map(({ id, date, title }) => (
+        {allPostData && allPostData.map(({ id, date, title }) => (
           <Grid item
             key={id}
             sm={6}
