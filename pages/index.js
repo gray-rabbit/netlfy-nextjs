@@ -9,8 +9,8 @@ const IndexPage = ({ allPostData }) => {
     <Layout title="Coala Devlog">
       <h2>Blog</h2>
       <Grid container>
-        {allPostData.map(({ id, date, title }) => (
-          <Grid
+        {allPostData&&allPostData.map(({ id, date, title }) => (
+          <Grid item
             key={id}
             sm={6}
             md={4}
